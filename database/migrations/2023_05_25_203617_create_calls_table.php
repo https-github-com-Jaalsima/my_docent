@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('institution_id');
             $table->string('title');
-            $table->string('status');
             $table->date('start_date');
             $table->date('deadline');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

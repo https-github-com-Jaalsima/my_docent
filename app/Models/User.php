@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -20,6 +21,10 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
+
+    const ACTIVE = true;
+    const INACTIVE = false;
 
     /**
      * The attributes that are mass assignable.
@@ -62,18 +67,18 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function address(): BelongsTo
+    public function address(): HasOne
     {
-        return $this->BelongsTo(Address::class);
+        return $this->HasOne(Address::class);
     }
 
     public function institution(): HasOne
     {
-        return $this->Hasone(Institution::class);
+        return $this->HasOne(Institution::class);
     }
 
     public function docent(): HasOne
     {
-        return $this->Hasone(Docent::class);
+        return $this->HasOne(Docent::class);
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('job_position');
             $table->string('description');
             $table->decimal('salary');
-            $table->string('status');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

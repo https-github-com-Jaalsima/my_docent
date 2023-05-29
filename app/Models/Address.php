@@ -18,8 +18,8 @@ class Address extends Model
         return $this->BelongsTo(City::class);
     }
 
-    public function user(): HasOne
+    public function user(): BelongsTo
     {
-        return $this->HasOne(User::class);
+        return $this->BelongsTo(User::class);
     }
 }
